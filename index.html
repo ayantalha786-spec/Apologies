@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I’m Sorry</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.container {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  padding: 35px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+input {
+  padding: 12px;
+  width: 80%;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 12px 25px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #ff6b81;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff4757;
+}
+
+.message {
+  margin-top: 25px;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: left;
+  display: none;
+  white-space: pre-line;
+}
+
+.fade {
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Hey…</h1>
+  <p>Before you read this… just tell me your name</p>
+
+  <input type="text" id="nameInput" placeholder="Your name">
+  <br>
+  <button onclick="startApology()">Continue</button>
+
+  <div id="message" class="message"></div>
+</div>
+
+<!-- Soft Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function startApology() {
+  const name = document.getElementById("nameInput").value.trim();
+  if(name === "") {
+    alert("Please enter your name");
+    return;
+  }
+
+  document.getElementById("bgMusic").play();
+
+  const fullText = `${name}…
+
+I don’t really know where to start… but I know I needed to say this.
+
+I’m sorry.
+
+Not just in a simple way… but in the way where I truly understand that I hurt you.
+
+I wasn’t there when I should have been.
+I didn’t understand you the way you deserved.
+And maybe the worst part is… I didn’t realize it in time.
+
+You trusted me with your feelings… and I failed to handle them the right way.
+
+And I’ve been thinking about that a lot.
+
+About the moments I ignored, the things I didn’t notice, and the times you probably needed me… but I wasn’t really there.
+
+You didn’t deserve that.
+
+You deserved someone who listens, who understands, who stays… and I’m sorry I couldn’t be that person when it mattered the most.
+
+I’m not writing this to change anything or to expect something back from you.
+
+I just didn’t want my silence to be the last thing you remember from me.
+
+You meant something to me… you still do.
+
+And I’ll always regret the way I made you feel.
+
+I just hope… wherever you are, you’re okay.
+
+Take care… always.`;
+
+  const msgDiv = document.getElementById("message");
+  msgDiv.style.display = "block";
+  msgDiv.classList.add("fade");
+
+  typeWriter(fullText, msgDiv, 0);
+}
+
+function typeWriter(text, element, i) {
+  if (i < text.length) {
+    element.innerHTML += text.charAt(i);
+    setTimeout(() => typeWriter(text, element, i + 1), 30);
+  }
+}
+</script>
+
+</body>
+</html>
